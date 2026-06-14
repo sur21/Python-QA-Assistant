@@ -37,5 +37,5 @@ Top Answer: {a_body}"""
         metadata = {"question_id": int(row['Id_q']), "score": int(row['Score_q'])}
         documents.append({"page_content": content, "metadata": metadata})
     
-    print(f"✅ Prepared {len(documents)} documents")
+    print(f"Prepared {len(documents)} documents")
     return documents
