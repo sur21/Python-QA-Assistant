@@ -15,7 +15,6 @@ class PythonQARAG:
         self.embeddings = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-MiniLM-L6-v2"
         )
-        # Updated to a currently available Groq model
         self.llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.2)
         self.vectorstore = None
         self.retriever = None
@@ -37,7 +36,7 @@ class PythonQARAG:
         )
         self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 6})
         self._build_chain()
-        print("✅ Index built successfully!")
+        print("Index built successfully!")
 
     def load_index(self):
         self.vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=self.embeddings)
