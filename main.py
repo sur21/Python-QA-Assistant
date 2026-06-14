@@ -6,8 +6,6 @@ from contextlib import asynccontextmanager
 import os
 
 load_dotenv()
-
-# Initialize RAG system
 rag_system = PythonQARAG()
 
 
