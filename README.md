@@ -12,6 +12,7 @@ This project is a Python Programming Q&A Assistant built using a Retrieval-Augme
 * ChromaDB
 * Grok (xAI)
 * Pydantic
+* ngrok (for public deployment)
 
 ## Dataset
 
@@ -29,45 +30,62 @@ Python-QA-Assistant/
 ├── requirements.txt
 ├── README.md
 ├── test_results.md
-└── .env.example
+├── .env.example
+└── chroma_db/
 ```
 
 ## Setup
 
-1. Clone the repository
+### 1. Clone the repository
 
 ```bash
 git clone <repository-url>
 cd Python-QA-Assistant
 ```
 
-2. Install dependencies
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file
+### 3. Create a `.env` file
 
 ```env
 GROK_API_KEY=your_api_key_here
 ```
 
-4. Run the application
+### 4. Run the application
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Swagger UI:
+## Deployment
+
+The application has been deployed using ngrok and is publicly accessible at:
+
+**https://oppressive-meryl-unsummable.ngrok-free.dev**
+
+### API Documentation (Swagger UI)
+
+**Local:**
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
+**Deployed:**
+
+```text
+https://oppressive-meryl-unsummable.ngrok-free.dev/docs
+```
+
 ## API Endpoints
 
 ### GET /health
+
+Response:
 
 ```json
 {
@@ -77,6 +95,8 @@ http://127.0.0.1:8000/docs
 
 ### POST /ask
 
+Request:
+
 ```json
 {
   "question": "What is a Python list?"
@@ -85,7 +105,14 @@ http://127.0.0.1:8000/docs
 
 ## Testing
 
-The API was tested using 8 different queries, including Python-related questions, invalid inputs, and out-of-domain queries. Results are available in `test_results.md`.
+The API was tested using 8 different queries, including:
+
+* Python programming questions
+* Invalid inputs
+* Edge cases
+* Out-of-domain queries
+
+Results are available in `test_results.md`.
 
 ## Future Improvements
 
@@ -93,8 +120,9 @@ The API was tested using 8 different queries, including Python-related questions
 * Better retrieval strategies
 * Conversation memory
 * Docker deployment
+* Authentication and rate limiting
+* Cloud deployment (AWS/Azure/GCP)
 
 ## Author
 
-Suryansh Ujjwal
-
+**Suryansh Ujjwal**
