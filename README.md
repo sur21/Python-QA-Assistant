@@ -1,227 +1,73 @@
 # Python Programming Q&A Assistant
 
-A Retrieval-Augmented Generation (RAG) based question-answering system that helps learners get accurate and grounded answers to Python-related questions.
-
-Built using FastAPI, LangChain, ChromaDB, and the Grok (xAI) API.
-
----
-
-## Table of Contents
-
-* Overview
-* Features
-* Dataset
-* Tech Stack
-* System Architecture
-* Project Structure
-* Installation
-* Environment Variables
-* Running the Application
-* API Endpoints
-* Testing
-* Scalability Considerations
-* Future Improvements
-* Author
-
----
-
 ## Overview
 
-This project was developed as part of an AI Engineering assessment.
-
-The system retrieves relevant Python-related information from a Stack Overflow dataset and uses a Retrieval-Augmented Generation (RAG) pipeline to generate grounded responses for users.
-
----
-
-## Features
-
-* Retrieval-Augmented Generation (RAG)
-* FastAPI REST API
-* ChromaDB Vector Database
-* Grok (xAI) Integration
-* Python-Specific Question Answering
-* Input Validation
-* Error Handling
-* Interactive Swagger Documentation
-
----
-
-## Dataset
-
-**Stack Overflow - Python Questions & Answers**
-
-Dataset Source:
-
-https://www.kaggle.com/datasets/stackoverflow/pythonquestions
-
-The dataset contains Python-related questions and answers collected from Stack Overflow and serves as the knowledge base for retrieval.
-
----
+This project is a Python Programming Q&A Assistant built using a Retrieval-Augmented Generation (RAG) pipeline. It answers Python-related questions by retrieving relevant information from a Stack Overflow Python Q&A dataset and generating grounded responses using the Grok (xAI) API.
 
 ## Tech Stack
 
-| Component       | Technology |
-| --------------- | ---------- |
-| Backend         | FastAPI    |
-| Framework       | LangChain  |
-| Vector Database | ChromaDB   |
-| LLM             | Grok (xAI) |
-| Validation      | Pydantic   |
-| Server          | Uvicorn    |
+* Python
+* FastAPI
+* LangChain
+* ChromaDB
+* Grok (xAI)
+* Pydantic
 
----
+## Dataset
 
-## System Architecture
+Stack Overflow - Python Questions & Answers
 
-### Query Flow
-
-```text
-User Question
-      │
-      ▼
- FastAPI (/ask)
-      │
-      ▼
-  RAG Pipeline
-      │
-      ▼
- ChromaDB Search
-      │
-      ▼
-Relevant Context
-      │
-      ▼
-  Grok (xAI)
-      │
-      ▼
- Generated Answer
-      │
-      ▼
- JSON Response
-```
-
-### Data Ingestion Flow
-
-```text
-Stack Overflow Dataset
-          │
-          ▼
-   Data Preprocessing
-          │
-          ▼
-      Chunking
-          │
-          ▼
- Embedding Creation
-          │
-          ▼
-      ChromaDB
-```
-
----
+https://www.kaggle.com/datasets/stackoverflow/pythonquestions
 
 ## Project Structure
 
 ```text
 Python-QA-Assistant/
-│
 ├── main.py
 ├── rag_pipeline.py
 ├── data_loader.py
-├── config.py
 ├── requirements.txt
 ├── README.md
 ├── test_results.md
-├── .env.example
-│
-└── chroma_db/
+└── .env.example
 ```
 
----
+## Setup
 
-## Installation
-
-### Clone the Repository
+1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/Python-QA-Assistant.git
-
+git clone <repository-url>
 cd Python-QA-Assistant
 ```
 
-### Create a Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### Activate the Environment
-
-Windows
-
-```bash
-venv\Scripts\activate
-```
-
-Linux / macOS
-
-```bash
-source venv/bin/activate
-```
-
-### Install Dependencies
+2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Environment Variables
-
-Create a `.env` file in the project root directory.
+3. Create a `.env` file
 
 ```env
 GROK_API_KEY=your_api_key_here
 ```
 
-Example:
-
-```env
-GROK_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
-```
-
----
-
-## Running the Application
-
-Start the FastAPI server:
+4. Run the application
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Application URL:
-
-```text
-http://127.0.0.1:8000
-```
-
-Swagger Documentation:
+Swagger UI:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
----
-
 ## API Endpoints
 
 ### GET /health
-
-Health check endpoint.
-
-Response:
 
 ```json
 {
@@ -229,13 +75,7 @@ Response:
 }
 ```
 
----
-
 ### POST /ask
-
-Submit a Python-related question.
-
-Request:
 
 ```json
 {
@@ -243,73 +83,18 @@ Request:
 }
 ```
 
-Response:
-
-```json
-{
-  "answer": "..."
-}
-```
-
----
-
 ## Testing
 
-The API was tested using multiple Python-related and edge-case queries.
-
-### Sample Test Cases
-
-| Question                           | Expected Result  |
-| ---------------------------------- | ---------------- |
-| What is a Python list?             | Valid Answer     |
-| Difference between list and tuple? | Valid Answer     |
-| What is a lambda function?         | Valid Answer     |
-| How can I reverse a list?          | Valid Answer     |
-| Who is the creator of Python?      | Valid Answer     |
-| Who won the FIFA World Cup?        | Rejected         |
-| Hi                                 | Validation Error |
-
-Detailed results are available in:
-
-```text
-test_results.md
-```
-
----
-
-## Scalability Considerations
-
-To support 100+ concurrent users:
-
-* Asynchronous FastAPI endpoints
-* Redis caching for repeated queries
-* Load balancing
-* Managed vector databases
-* Horizontal scaling
-* Monitoring and logging
-* API rate limiting
-
----
+The API was tested using 8 different queries, including Python-related questions, invalid inputs, and out-of-domain queries. Results are available in `test_results.md`.
 
 ## Future Improvements
 
-* Source citations in responses
-* Hybrid search retrieval
+* Source citations
+* Better retrieval strategies
 * Conversation memory
 * Docker deployment
-* Authentication and authorization
-* Support for multiple LLM providers
-
----
 
 ## Author
 
 Suryansh Ujjwal
 
-AI Engineering Assessment Project demonstrating:
-
-* Retrieval-Augmented Generation (RAG)
-* FastAPI Development
-* Vector Database Integration
-* API Testing
-* LLM-Based Question Answering
