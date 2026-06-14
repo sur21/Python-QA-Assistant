@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+langchain
+langchain-openai
+chromadb
+pandas
+pydantic-settings
+httpx
+python-dotenv
+langchain -community
